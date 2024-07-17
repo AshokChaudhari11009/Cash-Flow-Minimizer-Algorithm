@@ -2,7 +2,7 @@
 
 ## Description
 
-This Money Splitwise Program is a C++ application that helps groups of friends minimize the number of transactions needed to settle debts among themselves. It uses custom implementations of min and max heaps to efficiently calculate the optimal set of transactions.
+It that helps groups of friends minimize the number of transactions needed to settle debts among themselves. It uses custom implementations of min and max heaps to efficiently calculate the optimal set of transactions.
 
 ## Features
 
