@@ -2,6 +2,7 @@
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+
 using namespace std;
 
 // Custom MinHeap class
@@ -10,9 +11,10 @@ private:
     vector<pair<int, string>> heap;
 
     void heapifyUp(int index) {
-        while (index > 0 && heap[(index - 1) / 2].first > heap[index].first) {
-            swap(heap[index], heap[(index - 1) / 2]);
-            index = (index - 1) / 2;
+        int parent = (index - 1) / 2;   // because of zero based indexing
+        while (index > 0 && heap[parent].first > heap[index].first) {
+            swap(heap[index], heap[parent]);
+            index = parent;
         }
     }
 
@@ -63,9 +65,10 @@ private:
     vector<pair<int, string>> heap;
 
     void heapifyUp(int index) {
-        while (index > 0 && heap[(index - 1) / 2].first < heap[index].first) {
-            swap(heap[index], heap[(index - 1) / 2]);
-            index = (index - 1) / 2;
+        int parent = (index-1)/2;
+        while (index > 0 && heap[parent].first < heap[index].first) {
+            swap(heap[index], heap[parent]);
+            index = parent;
         }
     }
 
@@ -117,7 +120,12 @@ public:
     string to;
     int amount;
     
-    Transaction(string f, string t, int a) : from(f), to(t), amount(a) {}
+    // Transaction(string f, string t, int a) : from(f), to(t), amount(a) {}
+    Transaction(string f, string t, int a){   // constructor
+        from=f;
+        to=t;
+        amount=a;
+    }
 };
 
 int main() {
@@ -163,7 +171,7 @@ int main() {
         minHeap.pop();
         maxHeap.pop();
 
-        int amount = min(-debt.first, credit.first);
+        int amount = min(-debt.first, credit.first);  // absolute minimum
         transactions.push_back(Transaction(debt.second, credit.second, amount));
 
         debt.first += amount;
